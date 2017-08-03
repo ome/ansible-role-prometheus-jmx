@@ -14,15 +14,15 @@
 - name: prometheus jmx | download jar
   become: yes
   get_url:
-    url: http://users.openmicroscopy.org.uk/~spli/idr/jmx_exporter/jmx_prometheus_javaagent-0.10-SNAPSHOT.jar
-    checksum: "sha256:48e2a9a5fc8e9f272981e5ec23f433e08a5abc4141ef568d2db6af34618a4265"
-    dest: /opt/prometheus/jars/jmx_prometheus_javaagent-0.10-SNAPSHOT.jar
+    url: https://repo1.maven.org/maven2/io/prometheus/jmx/jmx_prometheus_javaagent/0.10/jmx_prometheus_javaagent-0.10.jar
+    checksum: "sha256:b144a5a22fc9ee62d8d198f0dcc622f851c77cf52fee4bd529afbc266af37e29"
+    dest: /opt/prometheus/jars/jmx_prometheus_javaagent-0.10.jar
     force: no
 
 - name: prometheus jmx | symlink jar
   become: yes
   file:
-    src: /opt/prometheus/jars/jmx_prometheus_javaagent-0.10-SNAPSHOT.jar
+    src: /opt/prometheus/jars/jmx_prometheus_javaagent-0.10.jar
     path: /opt/prometheus/jars/jmx_prometheus_javaagent.jar
     force: yes
     state: link
