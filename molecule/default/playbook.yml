@@ -31,8 +31,9 @@
       failed_when: 'pgrep_java.rc not in [0, 1]'
 
     - name: Run test application in background
-      command: >-
-        java -javaagent:/opt/prometheus/jars/jmx_prometheus_javaagent.jar=12345:/etc/prometheus/jmx-default-config.yml BusyApp
+      command: "java \
+        -javaagent:/opt/prometheus/jars/jmx_prometheus_javaagent.jar=12345:\
+        /etc/prometheus/jmx-default-config.yml BusyApp"
       args:
         chdir: /opt
       async: 86400

@@ -14,15 +14,20 @@
 - name: prometheus jmx | download jar
   become: true
   get_url:
-    url: https://repo1.maven.org/maven2/io/prometheus/jmx/jmx_prometheus_javaagent/{{ prometheus_jmx_version }}/jmx_prometheus_javaagent-{{ prometheus_jmx_version }}.jar
+    url: "https://repo1.maven.org/maven2/io/prometheus/jmx/\
+      jmx_prometheus_javaagent/\
+      {{ prometheus_jmx_version }}/\
+      jmx_prometheus_javaagent-{{ prometheus_jmx_version }}.jar"
     checksum: "sha256:{{ prometheus_jmx_sha256 }}"
-    dest: /opt/prometheus/jars/jmx_prometheus_javaagent-{{ prometheus_jmx_version }}.jar
+    dest: "/opt/prometheus/jars/\
+      jmx_prometheus_javaagent-{{ prometheus_jmx_version }}.jar"
     force: false
 
 - name: prometheus jmx | symlink jar
   become: true
   file:
-    src: /opt/prometheus/jars/jmx_prometheus_javaagent-{{ prometheus_jmx_version }}.jar
+    src: "/opt/prometheus/jars/\
+      jmx_prometheus_javaagent-{{ prometheus_jmx_version }}.jar"
     path: /opt/prometheus/jars/jmx_prometheus_javaagent.jar
     force: true
     state: link
