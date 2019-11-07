@@ -2,34 +2,39 @@
 # tasks file for prometheus-jmx
 
 - name: prometheus jmx | create directories
-  become: yes
+  become: true
   file:
     path: "{{ item }}"
-    recurse: yes
+    recurse: true
     state: directory
   with_items:
-  - /opt/prometheus/jars
-  - /etc/prometheus
+    - /opt/prometheus/jars
+    - /etc/prometheus
 
 - name: prometheus jmx | download jar
-  become: yes
+  become: true
   get_url:
-    url: https://repo1.maven.org/maven2/io/prometheus/jmx/jmx_prometheus_javaagent/{{ prometheus_jmx_version }}/jmx_prometheus_javaagent-{{ prometheus_jmx_version }}.jar
+    url: "https://repo1.maven.org/maven2/io/prometheus/jmx/\
+      jmx_prometheus_javaagent/\
+      {{ prometheus_jmx_version }}/\
+      jmx_prometheus_javaagent-{{ prometheus_jmx_version }}.jar"
     checksum: "sha256:{{ prometheus_jmx_sha256 }}"
-    dest: /opt/prometheus/jars/jmx_prometheus_javaagent-{{ prometheus_jmx_version }}.jar
-    force: no
+    dest: "/opt/prometheus/jars/\
+      jmx_prometheus_javaagent-{{ prometheus_jmx_version }}.jar"
+    force: false
 
 - name: prometheus jmx | symlink jar
-  become: yes
+  become: true
   file:
-    src: /opt/prometheus/jars/jmx_prometheus_javaagent-{{ prometheus_jmx_version }}.jar
+    src: "/opt/prometheus/jars/\
+      jmx_prometheus_javaagent-{{ prometheus_jmx_version }}.jar"
     path: /opt/prometheus/jars/jmx_prometheus_javaagent.jar
-    force: yes
+    force: true
     state: link
 
 - name: prometheus jmx | configuration file
-  become: yes
+  become: true
   copy:
     dest: /etc/prometheus/jmx-default-config.yml
-    force: yes
+    force: true
     src: etc-prometheus-jmx-default-config.yml

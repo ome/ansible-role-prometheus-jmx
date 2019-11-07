@@ -1,0 +1,41 @@
+---
+- name: Converge
+  hosts: all
+  roles:
+    - role: ansible-role-prometheus-jmx
+
+# The rest of this file is just for testing
+- hosts: all
+  tasks:
+
+    - name: Install test JDK
+      yum:
+        name: java-devel
+        state: present
+
+    - name: Copy test application
+      copy:
+        src: BusyApp.java
+        dest: /opt/BusyApp.java
+
+    - name: Compile test application
+      command: javac BusyApp.java
+      args:
+        chdir: /opt
+        creates: /opt/BusyApp.class
+
+    - name: Check if test application running
+      command: pgrep java
+      register: pgrep_java
+      changed_when: false
+      failed_when: 'pgrep_java.rc not in [0, 1]'
+
+    - name: Run test application in background
+      command: "java \
+        -javaagent:/opt/prometheus/jars/jmx_prometheus_javaagent.jar=12345:\
+        /etc/prometheus/jmx-default-config.yml BusyApp"
+      args:
+        chdir: /opt
+      async: 86400
+      poll: 0
+      when: pgrep_java.rc == 1
