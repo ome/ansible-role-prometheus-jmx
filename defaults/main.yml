@@ -1,0 +1,6 @@
+---
+# defaults for prometheus-jmx
+
+prometheus_jmx_version: 0.9
+prometheus_jmx_sha256: >-
+  995d5e38b43955b94cbad34a23043c30f9e46deab768f0fd24f37556ddab4304
