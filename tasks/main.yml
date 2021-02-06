@@ -5,8 +5,8 @@
   become: true
   file:
     path: "{{ item }}"
-    recurse: true
     state: directory
+    mode: 0755
   with_items:
     - /opt/prometheus/jars
     - /etc/prometheus
@@ -38,3 +38,4 @@
     dest: /etc/prometheus/jmx-default-config.yml
     force: true
     src: etc-prometheus-jmx-default-config.yml
+    mode: 0644

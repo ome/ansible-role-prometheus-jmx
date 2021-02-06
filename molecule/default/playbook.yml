@@ -17,6 +17,7 @@
       copy:
         src: BusyApp.java
         dest: /opt/BusyApp.java
+        mode: 0644
 
     - name: Compile test application
       command: javac BusyApp.java
