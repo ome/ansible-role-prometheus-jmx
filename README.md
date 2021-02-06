@@ -1,7 +1,7 @@
 Prometheus
 ==========
 
-[![Build Status](https://travis-ci.org/ome/ansible-role-prometheus-jmx.svg)](https://travis-ci.org/ome/ansible-role-prometheus-jmx)
+[![Actions Status](https://github.com/ome/ansible-role-prometheus-jmx/workflows/Molecule/badge.svg)](https://github.com/ome/ansible-role-prometheus-jmx/actions)
 [![Ansible Role](https://img.shields.io/ansible/role/41328.svg)](https://galaxy.ansible.com/ome/prometheus_jmx/)
 
 Prometheus JMX Java-agent
