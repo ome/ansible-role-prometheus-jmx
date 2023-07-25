@@ -2,7 +2,7 @@
 - name: Converge
   hosts: all
   roles:
-    - role: ansible-role-prometheus-jmx
+    - role: ome.prometheus_jmx
 
 # The rest of this file is just for testing
 - hosts: all
