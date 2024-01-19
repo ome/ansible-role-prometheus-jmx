@@ -13,6 +13,11 @@
         name: java-devel
         state: present
 
+    - name: Install pgrep
+      dnf:
+        name: procps-ng
+        state: present
+
     - name: Copy test application
       copy:
         src: BusyApp.java
