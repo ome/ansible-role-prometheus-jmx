@@ -3,7 +3,7 @@
 
 - name: prometheus jmx | create directories
   become: true
-  file:
+  ansible.builtin.file:
     path: "{{ item }}"
     state: directory
     mode: 0755
@@ -13,7 +13,7 @@
 
 - name: prometheus jmx | download jar
   become: true
-  get_url:
+  ansible.builtin.get_url:
     url: "https://repo1.maven.org/maven2/io/prometheus/jmx/\
       jmx_prometheus_javaagent/\
       {{ prometheus_jmx_version }}/\
@@ -25,7 +25,7 @@
 
 - name: prometheus jmx | symlink jar
   become: true
-  file:
+  ansible.builtin.file:
     src: "/opt/prometheus/jars/\
       jmx_prometheus_javaagent-{{ prometheus_jmx_version }}.jar"
     path: /opt/prometheus/jars/jmx_prometheus_javaagent.jar
@@ -34,7 +34,7 @@
 
 - name: prometheus jmx | configuration file
   become: true
-  copy:
+  ansible.builtin.copy:
     dest: /etc/prometheus/jmx-default-config.yml
     force: true
     src: etc-prometheus-jmx-default-config.yml

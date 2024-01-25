@@ -9,8 +9,13 @@
   tasks:
 
     - name: Install test JDK
-      yum:
+      dnf:
         name: java-devel
+        state: present
+
+    - name: Install pgrep
+      dnf:
+        name: procps-ng
         state: present
 
     - name: Copy test application
